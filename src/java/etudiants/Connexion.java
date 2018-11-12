@@ -36,6 +36,8 @@ public class Connexion extends HttpServlet {
             String login = request.getParameter("login") ;
             String mdp = request.getParameter("mdp");
         
+            Etudiant etud = Etudiant.login_etudiant(login, mdp);
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -44,8 +46,12 @@ public class Connexion extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet myFirstServlet at " + request.getContextPath() + "</h1>");
-            out.println("<h1> Lx    ogin: " +  login + "</h1>" );
-            out.println("<h1> Mot de passe: " +  mdp + "</h1>" );
+            if(etud.getCin() != 0) {
+                out.println("<h1> Login: " +  login + "</h1>" );
+                out.println("<h1> Mot de passe: " +  mdp + "</h1>" );
+            } else {
+                out.println("<h1> Erreur ! </h1>" );
+            }
             out.println("<a href='etudiants/connexion.html'>Retourner</a>");
             out.println("</body>");
             out.println("</html>");

@@ -42,6 +42,9 @@ public class Inscription extends HttpServlet {
             String login = request.getParameter("login") ;
             String mdp = request.getParameter("mdp");
             
+            Etudiant etud = new Etudiant(nom, prenom, login, mdp, groupe, cin, genre);
+            Etudiant.ajout(etud);
+            
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
@@ -50,6 +53,7 @@ public class Inscription extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet Inscription at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Done :D </h1>");
             out.println(
                         "Nom : " + nom + "<br>"
                         + "Prenom : " + prenom + "<br>"
